@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>Receipt Logger</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <header class="bar">
+      <h1>Receipt Logger</h1>
+      <span class="tag">M0 skeleton</span>
+    </header>
+
+    <main>
+      <section id="config-banner" class="banner" hidden></section>
+
+      <section class="panel">
+        <h2>1. Sign in</h2>
+        <div id="signin-button"></div>
+        <p id="signin-status" class="muted">Not signed in.</p>
+      </section>
+
+      <section class="panel">
+        <h2>2. Who am I? <span class="spike">spikes 1–3</span></h2>
+        <p class="muted">Asks the Apps Script who you are. Proves the page can read the script's reply.</p>
+        <button id="whoami-btn" class="action" disabled>Call whoami</button>
+        <pre id="whoami-out" class="out">No call yet.</pre>
+      </section>
+
+      <section class="panel">
+        <h2>3. Add test row</h2>
+        <p class="muted">Writes one $0.00 row marked "TEST ROW (M0)" to the Receipts tab. Safe to delete afterwards.</p>
+        <button id="testrow-btn" class="action" disabled>Add test row</button>
+        <pre id="testrow-out" class="out">No call yet.</pre>
+      </section>
+
+      <section class="panel">
+        <h2>4. Photo picker check <span class="spike">spike 4</span></h2>
+        <p class="muted">Pick a photo from the library or take one. Nothing is uploaded.</p>
+        <label class="picker">
+          <span>Choose a photo</span>
+          <input id="photo-input" type="file" accept="image/jpeg,image/png,image/webp" />
+        </label>
+        <pre id="photo-out" class="out">No file picked.</pre>
+      </section>
+    </main>
+
+    <footer class="muted">
+      <span>Build <code id="build-id"></code></span> · <span id="ua"></span>
+    </footer>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

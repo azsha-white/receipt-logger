@@ -1,0 +1,27 @@
+# This repo is PUBLIC. Nothing secret or personal may ever be committed.
+
+# Old Codex build: holds local secrets (.dev.vars, uploader.url). Never commit.
+tracker/
+household-tracker.tar.gz
+
+# Crew workspace and project map (internal notes, not part of the app)
+.forge/
+.project-map/
+
+# Build output and dependencies
+node_modules/
+dist/
+
+# Credentials and environment files
+.clasprc.json
+.env*
+*.vars
+*.pem
+*.key
+credentials*.json
+client_secret*.json
+
+# Editor / OS noise
+.DS_Store
+Thumbs.db
+*.log
