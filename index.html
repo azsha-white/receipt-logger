@@ -12,8 +12,11 @@
   <body>
     <header class="bar">
       <h1>Receipt Logger</h1>
+      <span id="version" class="tag" title="">v0.0.0</span>
       <span class="tag">M0 skeleton</span>
+      <button id="update-btn" class="update" type="button" hidden>Update available</button>
     </header>
+    <div id="update-notice" class="notice" role="status" hidden></div>
 
     <main>
       <section id="config-banner" class="banner" hidden></section>
@@ -50,7 +53,7 @@
     </main>
 
     <footer class="muted">
-      <span>Build <code id="build-id"></code></span> · <span id="ua"></span>
+      <span>Version <code id="footer-version"></code> · build <code id="build-id"></code></span> · <span id="ua"></span>
     </footer>
 
     <script type="module" src="/src/main.ts"></script>

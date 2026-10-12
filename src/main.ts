@@ -4,8 +4,10 @@ import { callApi, checkConfig, type ApiCall } from './api.ts';
 import { decodeJwtPayload } from './token.ts';
 import { sniffImageFormat, spike4Verdict } from './files.ts';
 import { mountSignInButton } from './gis.ts';
+import { mountUpdateUi } from './update-ui.ts';
 
 declare const __BUILD_ID__: string;
+declare const __APP_VERSION__: string;
 
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
 
@@ -20,7 +22,20 @@ const photoInput = $<HTMLInputElement>('photo-input');
 const photoOut = $('photo-out');
 
 $('build-id').textContent = __BUILD_ID__;
+$('footer-version').textContent = __APP_VERSION__;
 $('ua').textContent = navigator.userAgent;
+
+// Version label + "Update available" button. version.json is only written by the production build, so the dev
+// server would just get a 404 on every poll; skip it there.
+if (!import.meta.env.DEV) {
+  mountUpdateUi(
+    { versionLabel: $('version'), updateButton: $<HTMLButtonElement>('update-btn'), notice: $('update-notice') },
+    { version: __APP_VERSION__, build: __BUILD_ID__ },
+    `${import.meta.env.BASE_URL}version.json`,
+  );
+} else {
+  $('version').textContent = `v${__APP_VERSION__} (dev)`;
+}
 
 let idToken: string | null = null;
 const config = checkConfig(GOOGLE_CLIENT_ID, APPS_SCRIPT_URL);
